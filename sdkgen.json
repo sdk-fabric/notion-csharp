@@ -1,0 +1,9 @@
+{
+  "type": "client-csharp",
+  "require": {
+    "sdkfabric/notion": {
+      "target": "./src/SdkFabric.",
+      "namespace": "SdkFabric."
+    }
+  }
+}
