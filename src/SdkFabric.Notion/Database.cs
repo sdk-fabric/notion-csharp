@@ -12,9 +12,9 @@ public class Database
     [JsonPropertyName("id")]
     public string? Id { get; set; }
     [JsonPropertyName("created_time")]
-    public string? CreatedTime { get; set; }
+    public DateTime? CreatedTime { get; set; }
     [JsonPropertyName("last_edited_time")]
-    public string? LastEditedTime { get; set; }
+    public DateTime? LastEditedTime { get; set; }
     [JsonPropertyName("icon")]
     public DatabaseIcon? Icon { get; set; }
     [JsonPropertyName("cover")]
