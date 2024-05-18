@@ -16,11 +16,15 @@ the code.
 
 ## Usage
 
-The following example shows how you can use the client:
+The following example shows how you initialize the client:
 
 ```csharp
-CredentialsInterface credentials = new HttpBearer('[access_token]');
-Client client = Client::build(credentials);
+using SdkFabric.Notion.Client;
+
+Client client = Client.Build("[access_token]")
 
 // @TODO use the client
 ```
+
+You can find all available operations and types at:
+https://app.typehub.cloud/d/sdkfabric/notion
