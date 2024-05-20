@@ -20,17 +20,25 @@ public class Client : ClientAbstract
     {
     }
 
-    public UsersTag Users()
+    public UserTag User()
     {
-        return new UsersTag(
+        return new UserTag(
             this.HttpClient,
             this.Parser
         );
     }
 
-    public DatabasesTag Databases()
+    public DatabaseTag Database()
     {
-        return new DatabasesTag(
+        return new DatabaseTag(
+            this.HttpClient,
+            this.Parser
+        );
+    }
+
+    public PageTag Page()
+    {
+        return new PageTag(
             this.HttpClient,
             this.Parser
         );
