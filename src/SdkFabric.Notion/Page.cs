@@ -25,9 +25,13 @@ public class Page
     [JsonPropertyName("icon")]
     public string? Icon { get; set; }
     [JsonPropertyName("parent")]
-    public string? Parent { get; set; }
+    public object? Parent { get; set; }
     [JsonPropertyName("in_trash")]
     public bool? InTrash { get; set; }
     [JsonPropertyName("properties")]
     public Dictionary<string, object>? Properties { get; set; }
+    [JsonPropertyName("url")]
+    public string? Url { get; set; }
+    [JsonPropertyName("public_url")]
+    public string? PublicUrl { get; set; }
 }
