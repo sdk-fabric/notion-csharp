@@ -8,7 +8,7 @@ namespace SdkFabric.Notion;
 public class UserCollection
 {
     [JsonPropertyName("results")]
-    public List<User>? Results { get; set; }
+    public System.Collections.Generic.List<User>? Results { get; set; }
     [JsonPropertyName("next_cursor")]
     public string? NextCursor { get; set; }
     [JsonPropertyName("has_more")]

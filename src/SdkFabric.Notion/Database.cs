@@ -12,9 +12,9 @@ public class Database
     [JsonPropertyName("id")]
     public string? Id { get; set; }
     [JsonPropertyName("created_time")]
-    public DateTime? CreatedTime { get; set; }
+    public System.DateTime? CreatedTime { get; set; }
     [JsonPropertyName("last_edited_time")]
-    public DateTime? LastEditedTime { get; set; }
+    public System.DateTime? LastEditedTime { get; set; }
     [JsonPropertyName("icon")]
     public DatabaseIcon? Icon { get; set; }
     [JsonPropertyName("cover")]
@@ -22,7 +22,7 @@ public class Database
     [JsonPropertyName("url")]
     public string? Url { get; set; }
     [JsonPropertyName("title")]
-    public List<DatabaseTitle>? Title { get; set; }
+    public System.Collections.Generic.List<DatabaseTitle>? Title { get; set; }
     [JsonPropertyName("description")]
-    public List<DatabaseTitle>? Description { get; set; }
+    public System.Collections.Generic.List<DatabaseTitle>? Description { get; set; }
 }

@@ -13,9 +13,9 @@ public class Page
     [JsonPropertyName("id")]
     public string? Id { get; set; }
     [JsonPropertyName("created_time")]
-    public DateTime? CreatedTime { get; set; }
+    public System.DateTime? CreatedTime { get; set; }
     [JsonPropertyName("last_edited_time")]
-    public DateTime? LastEditedTime { get; set; }
+    public System.DateTime? LastEditedTime { get; set; }
     [JsonPropertyName("created_by")]
     public User? CreatedBy { get; set; }
     [JsonPropertyName("last_edited_by")]
@@ -29,7 +29,7 @@ public class Page
     [JsonPropertyName("in_trash")]
     public bool? InTrash { get; set; }
     [JsonPropertyName("properties")]
-    public Dictionary<string, object>? Properties { get; set; }
+    public System.Collections.Generic.Dictionary<string, object>? Properties { get; set; }
     [JsonPropertyName("url")]
     public string? Url { get; set; }
     [JsonPropertyName("public_url")]
