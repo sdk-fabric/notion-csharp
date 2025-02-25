@@ -14,9 +14,9 @@ public class Block
     [JsonPropertyName("parent")]
     public Page? Parent { get; set; }
     [JsonPropertyName("created_time")]
-    public DateTime? CreatedTime { get; set; }
+    public System.DateTime? CreatedTime { get; set; }
     [JsonPropertyName("last_edited_time")]
-    public DateTime? LastEditedTime { get; set; }
+    public System.DateTime? LastEditedTime { get; set; }
     [JsonPropertyName("created_by")]
     public User? CreatedBy { get; set; }
     [JsonPropertyName("last_edited_by")]

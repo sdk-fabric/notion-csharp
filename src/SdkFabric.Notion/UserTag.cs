@@ -35,19 +35,22 @@ public class UserTag : TagAbstract {
         RestRequest request = new(this.Parser.Url("/v1/users", pathParams), Method.Get);
         this.Parser.Query(request, queryParams, queryStructNames);
 
+
         RestResponse response = await this.HttpClient.ExecuteAsync(request);
 
         if (response.IsSuccessful)
         {
-            return this.Parser.Parse<UserCollection>(response.Content);
+            var data = this.Parser.Parse<UserCollection>(response.Content);
+
+            return data;
         }
 
-        throw (int) response.StatusCode switch
-        {
-            _ => throw new UnknownStatusCodeException("The server returned an unknown status code"),
-        };
+        var statusCode = (int) response.StatusCode;
+        throw new UnknownStatusCodeException("The server returned an unknown status code: " + statusCode);
     }
-
+    /**
+     * Retrieves a User using the ID specified.
+     */
     public async Task<User> Get(string userId)
     {
         Dictionary<string, object> pathParams = new();
@@ -60,17 +63,18 @@ public class UserTag : TagAbstract {
         RestRequest request = new(this.Parser.Url("/v1/users/:user_id", pathParams), Method.Get);
         this.Parser.Query(request, queryParams, queryStructNames);
 
+
         RestResponse response = await this.HttpClient.ExecuteAsync(request);
 
         if (response.IsSuccessful)
         {
-            return this.Parser.Parse<User>(response.Content);
+            var data = this.Parser.Parse<User>(response.Content);
+
+            return data;
         }
 
-        throw (int) response.StatusCode switch
-        {
-            _ => throw new UnknownStatusCodeException("The server returned an unknown status code"),
-        };
+        var statusCode = (int) response.StatusCode;
+        throw new UnknownStatusCodeException("The server returned an unknown status code: " + statusCode);
     }
 
 

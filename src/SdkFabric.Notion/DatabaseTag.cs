@@ -19,6 +19,9 @@ public class DatabaseTag : TagAbstract {
     }
 
 
+    /**
+     * Retrieves a database object — information that describes the structure and columns of a database — for a provided database ID. The response adheres to any limits to an integration’s capabilities.
+     */
     public async Task<Database> Get(string databaseId)
     {
         Dictionary<string, object> pathParams = new();
@@ -31,17 +34,18 @@ public class DatabaseTag : TagAbstract {
         RestRequest request = new(this.Parser.Url("/v1/databases/:database_id", pathParams), Method.Get);
         this.Parser.Query(request, queryParams, queryStructNames);
 
+
         RestResponse response = await this.HttpClient.ExecuteAsync(request);
 
         if (response.IsSuccessful)
         {
-            return this.Parser.Parse<Database>(response.Content);
+            var data = this.Parser.Parse<Database>(response.Content);
+
+            return data;
         }
 
-        throw (int) response.StatusCode switch
-        {
-            _ => throw new UnknownStatusCodeException("The server returned an unknown status code"),
-        };
+        var statusCode = (int) response.StatusCode;
+        throw new UnknownStatusCodeException("The server returned an unknown status code: " + statusCode);
     }
 
 

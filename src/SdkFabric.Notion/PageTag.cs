@@ -19,6 +19,9 @@ public class PageTag : TagAbstract {
     }
 
 
+    /**
+     * Retrieves a Page object using the ID specified.
+     */
     public async Task<Page> Get(string pageId)
     {
         Dictionary<string, object> pathParams = new();
@@ -31,19 +34,22 @@ public class PageTag : TagAbstract {
         RestRequest request = new(this.Parser.Url("/v1/pages/:page_id", pathParams), Method.Get);
         this.Parser.Query(request, queryParams, queryStructNames);
 
+
         RestResponse response = await this.HttpClient.ExecuteAsync(request);
 
         if (response.IsSuccessful)
         {
-            return this.Parser.Parse<Page>(response.Content);
+            var data = this.Parser.Parse<Page>(response.Content);
+
+            return data;
         }
 
-        throw (int) response.StatusCode switch
-        {
-            _ => throw new UnknownStatusCodeException("The server returned an unknown status code"),
-        };
+        var statusCode = (int) response.StatusCode;
+        throw new UnknownStatusCodeException("The server returned an unknown status code: " + statusCode);
     }
-
+    /**
+     * Creates a new page that is a child of an existing page or database.
+     */
     public async Task<Page> Create(Page payload)
     {
         Dictionary<string, object> pathParams = new();
@@ -56,17 +62,19 @@ public class PageTag : TagAbstract {
         this.Parser.Query(request, queryParams, queryStructNames);
         request.AddJsonBody(JsonSerializer.Serialize(payload));
 
+        request.AddOrUpdateHeader("Content-Type", "application/json");
+
         RestResponse response = await this.HttpClient.ExecuteAsync(request);
 
         if (response.IsSuccessful)
         {
-            return this.Parser.Parse<Page>(response.Content);
+            var data = this.Parser.Parse<Page>(response.Content);
+
+            return data;
         }
 
-        throw (int) response.StatusCode switch
-        {
-            _ => throw new UnknownStatusCodeException("The server returned an unknown status code"),
-        };
+        var statusCode = (int) response.StatusCode;
+        throw new UnknownStatusCodeException("The server returned an unknown status code: " + statusCode);
     }
 
 
