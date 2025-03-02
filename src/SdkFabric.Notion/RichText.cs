@@ -7,7 +7,10 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
-public class RichText
+[JsonPolymorphic(TypeDiscriminatorPropertyName = "type")]
+[JsonDerivedType(typeof(RichTextEquation), typeDiscriminator: "equation")]
+[JsonDerivedType(typeof(RichTextText), typeDiscriminator: "text")]
+public abstract class RichText
 {
     [JsonPropertyName("type")]
     public string? Type { get; set; }
