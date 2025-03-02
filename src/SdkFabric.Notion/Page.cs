@@ -4,34 +4,49 @@
  */
 
 using System.Text.Json.Serialization;
-using System.Collections.Generic;
+
 namespace SdkFabric.Notion;
+
 public class Page
 {
     [JsonPropertyName("object")]
     public string? Object { get; set; }
+
     [JsonPropertyName("id")]
     public string? Id { get; set; }
+
     [JsonPropertyName("created_time")]
     public System.DateTime? CreatedTime { get; set; }
+
     [JsonPropertyName("last_edited_time")]
     public System.DateTime? LastEditedTime { get; set; }
+
     [JsonPropertyName("created_by")]
     public User? CreatedBy { get; set; }
+
     [JsonPropertyName("last_edited_by")]
     public User? LastEditedBy { get; set; }
+
     [JsonPropertyName("cover")]
     public string? Cover { get; set; }
+
     [JsonPropertyName("icon")]
     public string? Icon { get; set; }
+
     [JsonPropertyName("parent")]
     public object? Parent { get; set; }
+
     [JsonPropertyName("in_trash")]
     public bool? InTrash { get; set; }
+
     [JsonPropertyName("properties")]
     public System.Collections.Generic.Dictionary<string, object>? Properties { get; set; }
+
     [JsonPropertyName("url")]
     public string? Url { get; set; }
+
     [JsonPropertyName("public_url")]
     public string? PublicUrl { get; set; }
+
 }
+

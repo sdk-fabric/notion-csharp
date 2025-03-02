@@ -4,9 +4,13 @@
  */
 
 using System.Text.Json.Serialization;
+
 namespace SdkFabric.Notion;
+
 public class DatabaseId
 {
     [JsonPropertyName("database_id")]
     public string? DatabaseId { get; set; }
+
 }
+

@@ -4,9 +4,13 @@
  */
 
 using System.Text.Json.Serialization;
+
 namespace SdkFabric.Notion;
+
 public class Person
 {
     [JsonPropertyName("email")]
     public string? Email { get; set; }
+
 }
+

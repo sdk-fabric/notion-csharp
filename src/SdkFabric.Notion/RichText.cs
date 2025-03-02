@@ -4,15 +4,22 @@
  */
 
 using System.Text.Json.Serialization;
+
 namespace SdkFabric.Notion;
+
 public class RichText
 {
     [JsonPropertyName("type")]
     public string? Type { get; set; }
+
     [JsonPropertyName("annotations")]
     public RichTextAnnotation? Annotations { get; set; }
+
     [JsonPropertyName("plain_text")]
     public string? PlainText { get; set; }
+
     [JsonPropertyName("href")]
     public string? Href { get; set; }
+
 }
+

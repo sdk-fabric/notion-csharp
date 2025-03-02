@@ -4,25 +4,37 @@
  */
 
 using System.Text.Json.Serialization;
+
 namespace SdkFabric.Notion;
+
 public class Database
 {
     [JsonPropertyName("object")]
     public string? Object { get; set; }
+
     [JsonPropertyName("id")]
     public string? Id { get; set; }
+
     [JsonPropertyName("created_time")]
     public System.DateTime? CreatedTime { get; set; }
+
     [JsonPropertyName("last_edited_time")]
     public System.DateTime? LastEditedTime { get; set; }
+
     [JsonPropertyName("icon")]
     public DatabaseIcon? Icon { get; set; }
+
     [JsonPropertyName("cover")]
     public DatabaseCover? Cover { get; set; }
+
     [JsonPropertyName("url")]
     public string? Url { get; set; }
+
     [JsonPropertyName("title")]
     public System.Collections.Generic.List<DatabaseTitle>? Title { get; set; }
+
     [JsonPropertyName("description")]
     public System.Collections.Generic.List<DatabaseTitle>? Description { get; set; }
+
 }
+

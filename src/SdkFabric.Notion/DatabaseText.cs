@@ -4,11 +4,16 @@
  */
 
 using System.Text.Json.Serialization;
+
 namespace SdkFabric.Notion;
+
 public class DatabaseText
 {
     [JsonPropertyName("content")]
     public string? Content { get; set; }
+
     [JsonPropertyName("link")]
     public string? Link { get; set; }
+
 }
+

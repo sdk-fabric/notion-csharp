@@ -4,11 +4,16 @@
  */
 
 using System.Text.Json.Serialization;
+
 namespace SdkFabric.Notion;
+
 public class DatabaseCover
 {
     [JsonPropertyName("type")]
     public string? Type { get; set; }
+
     [JsonPropertyName("external")]
     public object? External { get; set; }
+
 }
+

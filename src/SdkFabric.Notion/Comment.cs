@@ -4,13 +4,19 @@
  */
 
 using System.Text.Json.Serialization;
+
 namespace SdkFabric.Notion;
+
 public class Comment
 {
     [JsonPropertyName("parent")]
     public PageId? Parent { get; set; }
+
     [JsonPropertyName("discussion_id")]
     public string? DiscussionId { get; set; }
+
     [JsonPropertyName("rich_text")]
     public RichText? RichText { get; set; }
+
 }
+

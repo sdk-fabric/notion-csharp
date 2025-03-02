@@ -4,17 +4,25 @@
  */
 
 using System.Text.Json.Serialization;
+
 namespace SdkFabric.Notion;
+
 public class DatabaseTitle
 {
     [JsonPropertyName("type")]
     public string? Type { get; set; }
+
     [JsonPropertyName("text")]
     public string? Text { get; set; }
+
     [JsonPropertyName("annotations")]
     public DatabaseAnnotations? Annotations { get; set; }
+
     [JsonPropertyName("plain_text")]
     public string? PlainText { get; set; }
+
     [JsonPropertyName("href")]
     public string? Href { get; set; }
+
 }
+
