@@ -7,7 +7,9 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
-public class Block
+[JsonPolymorphic(TypeDiscriminatorPropertyName = "type")]
+[JsonDerivedType(typeof(BlockBookmark), typeDiscriminator: "bookmark")]
+public abstract class Block
 {
     [JsonPropertyName("object")]
     public string? Object { get; set; }
@@ -16,28 +18,31 @@ public class Block
     public string? Id { get; set; }
 
     [JsonPropertyName("parent")]
-    public Page? Parent { get; set; }
+    public ParentId? Parent { get; set; }
+
+    [JsonPropertyName("type")]
+    public string? Type { get; set; }
 
     [JsonPropertyName("created_time")]
     public System.DateTime? CreatedTime { get; set; }
 
-    [JsonPropertyName("last_edited_time")]
-    public System.DateTime? LastEditedTime { get; set; }
-
     [JsonPropertyName("created_by")]
     public User? CreatedBy { get; set; }
+
+    [JsonPropertyName("last_edited_time")]
+    public System.DateTime? LastEditedTime { get; set; }
 
     [JsonPropertyName("last_edited_by")]
     public User? LastEditedBy { get; set; }
 
-    [JsonPropertyName("has_children")]
-    public bool? HasChildren { get; set; }
+    [JsonPropertyName("archived")]
+    public bool? Archived { get; set; }
 
     [JsonPropertyName("in_trash")]
     public bool? InTrash { get; set; }
 
-    [JsonPropertyName("type")]
-    public string? Type { get; set; }
+    [JsonPropertyName("has_children")]
+    public bool? HasChildren { get; set; }
 
 }
 

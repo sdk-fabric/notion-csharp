@@ -10,7 +10,7 @@ namespace SdkFabric.Notion;
 public class Comment
 {
     [JsonPropertyName("parent")]
-    public PageId? Parent { get; set; }
+    public ParentId? Parent { get; set; }
 
     [JsonPropertyName("discussion_id")]
     public string? DiscussionId { get; set; }
