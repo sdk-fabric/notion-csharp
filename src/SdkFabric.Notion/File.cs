@@ -9,11 +9,14 @@ namespace SdkFabric.Notion;
 
 public class File
 {
-    [JsonPropertyName("url")]
-    public string? Url { get; set; }
+    [JsonPropertyName("caption")]
+    public System.Collections.Generic.List<RichText>? Caption { get; set; }
 
-    [JsonPropertyName("expiry_time")]
-    public System.DateTime? ExpiryTime { get; set; }
+    [JsonPropertyName("file")]
+    public FileObject? File { get; set; }
+
+    [JsonPropertyName("name")]
+    public string? Name { get; set; }
 
 }
 
