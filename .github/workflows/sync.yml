@@ -1,0 +1,12 @@
+name: Template-Sync
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  sync-template:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: sdk-fabric/sync-action@v0.1.1
+        with:
+          lang: 'csharp'
