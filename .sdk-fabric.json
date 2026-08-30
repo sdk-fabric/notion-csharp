@@ -1,9 +1,4 @@
 {
-  "typehub_user": "sdkfabric",
-  "typehub_document": "notion",
-  "github_user": "sdk-fabric",
-  "github_repository": "notion-csharp",
-
   "namespace": "SdkFabric.Notion",
   "company": "Apioo",
   "description": "Notion C# SDK managed by SDK Fabric",
