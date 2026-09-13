@@ -15,17 +15,17 @@ using SdkFabric.Notion.Client;
 Client client = Client.Build("[access_token]")
 
 // Returns a paginated list of Users for the workspace.
-UserCollection response = client.User().Getall("Notion-Version", "start_cursor", 1);
+User_Collection response = client.User().getAll("Notion-Version", "start_cursor", 1);
 
 // Retrieves a User using the ID specified.
-User response = client.User().Get("Notion-Version", "user_id");
+User response = client.User().get("Notion-Version", "user_id");
 
 // Retrieves a database object — information that describes the structure and columns of a database — for a provided database ID.
-Database response = client.Database().Get("Notion-Version", "database_id");
+Database response = client.Database().get("Notion-Version", "database_id");
 
 // Retrieves a Page object using the ID specified.
-Page response = client.Page().Get("page_id");
+Page response = client.Page().get("page_id");
 
 // Creates a new page that is a child of an existing page or database.
-Page response = client.Page().Create(new Page());
+Page response = client.Page().create(new Page());
 ```
