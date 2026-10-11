@@ -20,7 +20,43 @@ public class DatabaseTag : TagAbstract {
 
 
     /**
-     * Retrieves a database object — information that describes the structure and columns of a database — for a provided database ID. The response adheres to any limits to an integration’s capabilities.
+     * Creates a database and its initial data source as a child of a page or the workspace.
+     */
+    public async Task<Database> Create(CreateDatabaseRequest payload)
+    {
+        Dictionary<string, object> pathParams = new();
+
+        Dictionary<string, object> queryParams = new();
+
+        List<string> queryStructNames = new();
+
+        RestRequest request = new(this.Parser.Url("/databases", pathParams), Method.Post);
+        this.Parser.Query(request, queryParams, queryStructNames);
+        request.AddJsonBody(JsonSerializer.Serialize(payload));
+
+        request.AddOrUpdateHeader("Content-Type", "application/json");
+
+        RestResponse response = await this.HttpClient.ExecuteAsync(request);
+
+        if (response.IsSuccessful)
+        {
+            var data = this.Parser.Parse<Database>(response.Content);
+
+            return data;
+        }
+
+        var statusCode = (int) response.StatusCode;
+        if (statusCode >= 0 && statusCode <= 999)
+        {
+            var data = this.Parser.Parse<Error>(response.Content);
+
+            throw new ErrorException(data);
+        }
+
+        throw new UnknownStatusCodeException("The server returned an unknown status code: " + statusCode);
+    }
+    /**
+     * Retrieves a database object, a container for one or more data sources, for a provided database ID. Use Retrieve a data source to read its property schema.
      */
     public async Task<Database> Get(string databaseId)
     {
@@ -31,9 +67,46 @@ public class DatabaseTag : TagAbstract {
 
         List<string> queryStructNames = new();
 
-        RestRequest request = new(this.Parser.Url("/v1/databases/:database_id", pathParams), Method.Get);
+        RestRequest request = new(this.Parser.Url("/databases/:database_id", pathParams), Method.Get);
         this.Parser.Query(request, queryParams, queryStructNames);
 
+
+        RestResponse response = await this.HttpClient.ExecuteAsync(request);
+
+        if (response.IsSuccessful)
+        {
+            var data = this.Parser.Parse<Database>(response.Content);
+
+            return data;
+        }
+
+        var statusCode = (int) response.StatusCode;
+        if (statusCode >= 0 && statusCode <= 999)
+        {
+            var data = this.Parser.Parse<Error>(response.Content);
+
+            throw new ErrorException(data);
+        }
+
+        throw new UnknownStatusCodeException("The server returned an unknown status code: " + statusCode);
+    }
+    /**
+     * Updates the attributes (title, description, icon, cover, parent, inline, trash and lock status) of a database.
+     */
+    public async Task<Database> Update(string databaseId, UpdateDatabaseRequest payload)
+    {
+        Dictionary<string, object> pathParams = new();
+        pathParams.Add("database_id", databaseId);
+
+        Dictionary<string, object> queryParams = new();
+
+        List<string> queryStructNames = new();
+
+        RestRequest request = new(this.Parser.Url("/databases/:database_id", pathParams), Method.Patch);
+        this.Parser.Query(request, queryParams, queryStructNames);
+        request.AddJsonBody(JsonSerializer.Serialize(payload));
+
+        request.AddOrUpdateHeader("Content-Type", "application/json");
 
         RestResponse response = await this.HttpClient.ExecuteAsync(request);
 

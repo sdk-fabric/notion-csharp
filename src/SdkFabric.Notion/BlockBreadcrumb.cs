@@ -7,7 +7,13 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
+/// <summary>
+/// Breadcrumb block.
+/// </summary>
 public class BlockBreadcrumb : Block
 {
+    [JsonPropertyName("breadcrumb")]
+    public EmptyObject? Breadcrumb { get; set; }
+
 }
 

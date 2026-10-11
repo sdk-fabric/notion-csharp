@@ -7,16 +7,19 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
+/// <summary>
+/// Content of a bulleted list item block.
+/// </summary>
 public class BulletedListItem
 {
-    [JsonPropertyName("rich_text")]
-    public System.Collections.Generic.List<BulletedListItem>? RichText { get; set; }
+    [JsonPropertyName("children")]
+    public System.Collections.Generic.List<Block>? Children { get; set; }
 
     [JsonPropertyName("color")]
     public string? Color { get; set; }
 
-    [JsonPropertyName("children")]
-    public System.Collections.Generic.List<Block>? Children { get; set; }
+    [JsonPropertyName("rich_text")]
+    public System.Collections.Generic.List<RichText>? RichText { get; set; }
 
 }
 

@@ -7,16 +7,28 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
+/// <summary>
+/// File object used by image, video, pdf, file and audio blocks, and by files property values.
+/// </summary>
 public class File
 {
     [JsonPropertyName("caption")]
     public System.Collections.Generic.List<RichText>? Caption { get; set; }
 
+    [JsonPropertyName("external")]
+    public ExternalObject? External { get; set; }
+
     [JsonPropertyName("file")]
-    public FileObject? File { get; set; }
+    public FileObject? File_ { get; set; }
+
+    [JsonPropertyName("file_upload")]
+    public IdReference? FileUpload { get; set; }
 
     [JsonPropertyName("name")]
     public string? Name { get; set; }
+
+    [JsonPropertyName("type")]
+    public string? Type { get; set; }
 
 }
 

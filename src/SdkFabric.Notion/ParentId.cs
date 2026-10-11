@@ -7,15 +7,17 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
+/// <summary>
+/// Information about the parent of a page, block, database, data source or comment.
+/// </summary>
 [JsonPolymorphic(TypeDiscriminatorPropertyName = "type")]
+[JsonDerivedType(typeof(AgentParentId), typeDiscriminator: "agent_id")]
+[JsonDerivedType(typeof(BlockParentId), typeDiscriminator: "block_id")]
+[JsonDerivedType(typeof(DataSourceParentId), typeDiscriminator: "data_source_id")]
 [JsonDerivedType(typeof(DatabaseParentId), typeDiscriminator: "database_id")]
 [JsonDerivedType(typeof(PageParentId), typeDiscriminator: "page_id")]
-[JsonDerivedType(typeof(BlockParentId), typeDiscriminator: "block_id")]
 [JsonDerivedType(typeof(WorkspaceParentId), typeDiscriminator: "workspace")]
 public abstract class ParentId
 {
-    [JsonPropertyName("type")]
-    public string? Type { get; set; }
-
 }
 

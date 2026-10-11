@@ -7,8 +7,14 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
+/// <summary>
+/// Content of an embed block.
+/// </summary>
 public class Embed
 {
+    [JsonPropertyName("caption")]
+    public System.Collections.Generic.List<RichText>? Caption { get; set; }
+
     [JsonPropertyName("url")]
     public string? Url { get; set; }
 

@@ -7,6 +7,9 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
+/// <summary>
+/// Content of a link preview.
+/// </summary>
 public class LinkPreview
 {
     [JsonPropertyName("url")]

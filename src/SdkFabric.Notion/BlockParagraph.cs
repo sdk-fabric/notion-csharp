@@ -7,6 +7,9 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
+/// <summary>
+/// Paragraph block.
+/// </summary>
 public class BlockParagraph : Block
 {
     [JsonPropertyName("paragraph")]

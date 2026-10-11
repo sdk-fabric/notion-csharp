@@ -7,6 +7,9 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
+/// <summary>
+/// Callout block.
+/// </summary>
 public class BlockCallout : Block
 {
     [JsonPropertyName("callout")]

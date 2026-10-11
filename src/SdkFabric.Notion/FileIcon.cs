@@ -7,6 +7,9 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
+/// <summary>
+/// Icon hosted by Notion.
+/// </summary>
 public class FileIcon : Icon
 {
     [JsonPropertyName("file")]

@@ -7,6 +7,9 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
+/// <summary>
+/// Parent is the workspace.
+/// </summary>
 public class WorkspaceParentId : ParentId
 {
     [JsonPropertyName("workspace")]

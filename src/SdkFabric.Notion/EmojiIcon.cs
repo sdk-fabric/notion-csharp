@@ -7,6 +7,9 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
+/// <summary>
+/// Emoji icon.
+/// </summary>
 public class EmojiIcon : Icon
 {
     [JsonPropertyName("emoji")]

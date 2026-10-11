@@ -7,10 +7,13 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
+/// <summary>
+/// Image block.
+/// </summary>
 public class BlockImage : Block
 {
     [JsonPropertyName("image")]
-    public FileObject? Image { get; set; }
+    public File? Image { get; set; }
 
 }
 

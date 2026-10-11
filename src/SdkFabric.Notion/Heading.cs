@@ -7,16 +7,19 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
+/// <summary>
+/// Content of a heading block.
+/// </summary>
 public class Heading
 {
-    [JsonPropertyName("rich_text")]
-    public System.Collections.Generic.List<RichText>? RichText { get; set; }
-
     [JsonPropertyName("color")]
     public string? Color { get; set; }
 
     [JsonPropertyName("is_toggleable")]
     public bool? IsToggleable { get; set; }
+
+    [JsonPropertyName("rich_text")]
+    public System.Collections.Generic.List<RichText>? RichText { get; set; }
 
 }
 

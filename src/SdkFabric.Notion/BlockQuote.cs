@@ -7,6 +7,9 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
+/// <summary>
+/// Quote block.
+/// </summary>
 public class BlockQuote : Block
 {
     [JsonPropertyName("quote")]

@@ -7,6 +7,9 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
+/// <summary>
+/// Bulleted list item block.
+/// </summary>
 public class BlockBulletedListItem : Block
 {
     [JsonPropertyName("bulleted_list_item")]

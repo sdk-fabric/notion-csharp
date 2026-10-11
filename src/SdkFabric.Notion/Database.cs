@@ -7,34 +7,58 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
+/// <summary>
+/// A database: a container for one or more data sources.
+/// </summary>
 public class Database
 {
-    [JsonPropertyName("object")]
-    public string? Object { get; set; }
-
-    [JsonPropertyName("id")]
-    public string? Id { get; set; }
+    [JsonPropertyName("cover")]
+    public Cover? Cover { get; set; }
 
     [JsonPropertyName("created_time")]
     public System.DateTime? CreatedTime { get; set; }
 
+    [JsonPropertyName("data_sources")]
+    public System.Collections.Generic.List<DataSourceReference>? DataSources { get; set; }
+
+    [JsonPropertyName("database_type")]
+    public string? DatabaseType { get; set; }
+
+    [JsonPropertyName("description")]
+    public System.Collections.Generic.List<RichText>? Description { get; set; }
+
+    [JsonPropertyName("icon")]
+    public Icon? Icon { get; set; }
+
+    [JsonPropertyName("id")]
+    public string? Id { get; set; }
+
+    [JsonPropertyName("in_trash")]
+    public bool? InTrash { get; set; }
+
+    [JsonPropertyName("is_inline")]
+    public bool? IsInline { get; set; }
+
+    [JsonPropertyName("is_locked")]
+    public bool? IsLocked { get; set; }
+
     [JsonPropertyName("last_edited_time")]
     public System.DateTime? LastEditedTime { get; set; }
 
-    [JsonPropertyName("icon")]
-    public DatabaseIcon? Icon { get; set; }
+    [JsonPropertyName("object")]
+    public string? Object { get; set; }
 
-    [JsonPropertyName("cover")]
-    public DatabaseCover? Cover { get; set; }
+    [JsonPropertyName("parent")]
+    public ParentId? Parent { get; set; }
+
+    [JsonPropertyName("public_url")]
+    public string? PublicUrl { get; set; }
+
+    [JsonPropertyName("title")]
+    public System.Collections.Generic.List<RichText>? Title { get; set; }
 
     [JsonPropertyName("url")]
     public string? Url { get; set; }
-
-    [JsonPropertyName("title")]
-    public System.Collections.Generic.List<DatabaseTitle>? Title { get; set; }
-
-    [JsonPropertyName("description")]
-    public System.Collections.Generic.List<DatabaseTitle>? Description { get; set; }
 
 }
 

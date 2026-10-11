@@ -7,6 +7,9 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
+/// <summary>
+/// File block.
+/// </summary>
 public class BlockFile : Block
 {
     [JsonPropertyName("file")]

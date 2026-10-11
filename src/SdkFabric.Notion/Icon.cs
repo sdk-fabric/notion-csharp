@@ -7,14 +7,17 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
+/// <summary>
+/// Page, database or block icon.
+/// </summary>
 [JsonPolymorphic(TypeDiscriminatorPropertyName = "type")]
+[JsonDerivedType(typeof(CustomEmojiIcon), typeDiscriminator: "custom_emoji")]
 [JsonDerivedType(typeof(EmojiIcon), typeDiscriminator: "emoji")]
-[JsonDerivedType(typeof(FileIcon), typeDiscriminator: "file")]
 [JsonDerivedType(typeof(ExternalIcon), typeDiscriminator: "external")]
+[JsonDerivedType(typeof(FileIcon), typeDiscriminator: "file")]
+[JsonDerivedType(typeof(FileUploadIcon), typeDiscriminator: "file_upload")]
+[JsonDerivedType(typeof(NoticonIcon), typeDiscriminator: "icon")]
 public abstract class Icon
 {
-    [JsonPropertyName("type")]
-    public string? Type { get; set; }
-
 }
 

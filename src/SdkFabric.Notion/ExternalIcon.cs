@@ -7,6 +7,9 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
+/// <summary>
+/// Icon hosted at an external URL.
+/// </summary>
 public class ExternalIcon : Icon
 {
     [JsonPropertyName("external")]

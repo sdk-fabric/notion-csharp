@@ -7,10 +7,13 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
+/// <summary>
+/// PDF block.
+/// </summary>
 public class BlockPDF : Block
 {
     [JsonPropertyName("pdf")]
-    public PDF? Pdf { get; set; }
+    public File? Pdf { get; set; }
 
 }
 

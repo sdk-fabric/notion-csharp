@@ -7,16 +7,46 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
+/// <summary>
+/// A comment on a Notion page or block.
+/// </summary>
 public class Comment
 {
-    [JsonPropertyName("parent")]
-    public ParentId? Parent { get; set; }
+    [JsonPropertyName("attachments")]
+    public System.Collections.Generic.List<CommentAttachment>? Attachments { get; set; }
+
+    [JsonPropertyName("created_by")]
+    public User? CreatedBy { get; set; }
+
+    [JsonPropertyName("created_time")]
+    public System.DateTime? CreatedTime { get; set; }
 
     [JsonPropertyName("discussion_id")]
     public string? DiscussionId { get; set; }
 
+    [JsonPropertyName("display_name")]
+    public CommentDisplayName? DisplayName { get; set; }
+
+    [JsonPropertyName("has_pending_attachments")]
+    public bool? HasPendingAttachments { get; set; }
+
+    [JsonPropertyName("id")]
+    public string? Id { get; set; }
+
+    [JsonPropertyName("last_edited_time")]
+    public System.DateTime? LastEditedTime { get; set; }
+
+    [JsonPropertyName("object")]
+    public string? Object { get; set; }
+
+    [JsonPropertyName("original_content_deleted")]
+    public bool? OriginalContentDeleted { get; set; }
+
+    [JsonPropertyName("parent")]
+    public ParentId? Parent { get; set; }
+
     [JsonPropertyName("rich_text")]
-    public RichText? RichText { get; set; }
+    public System.Collections.Generic.List<RichText>? RichText { get; set; }
 
 }
 

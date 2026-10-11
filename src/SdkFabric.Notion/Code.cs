@@ -7,16 +7,19 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
+/// <summary>
+/// Content of a code block.
+/// </summary>
 public class Code
 {
     [JsonPropertyName("caption")]
     public System.Collections.Generic.List<RichText>? Caption { get; set; }
 
-    [JsonPropertyName("rich_text")]
-    public System.Collections.Generic.List<RichText>? RichText { get; set; }
-
     [JsonPropertyName("language")]
     public string? Language { get; set; }
+
+    [JsonPropertyName("rich_text")]
+    public System.Collections.Generic.List<RichText>? RichText { get; set; }
 
 }
 

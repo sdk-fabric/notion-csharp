@@ -20,19 +20,54 @@ public class UserTag : TagAbstract {
 
 
     /**
+     * Retrieves a User using the ID specified.
+     */
+    public async Task<User> Get(string userId)
+    {
+        Dictionary<string, object> pathParams = new();
+        pathParams.Add("user_id", userId);
+
+        Dictionary<string, object> queryParams = new();
+
+        List<string> queryStructNames = new();
+
+        RestRequest request = new(this.Parser.Url("/users/:user_id", pathParams), Method.Get);
+        this.Parser.Query(request, queryParams, queryStructNames);
+
+
+        RestResponse response = await this.HttpClient.ExecuteAsync(request);
+
+        if (response.IsSuccessful)
+        {
+            var data = this.Parser.Parse<User>(response.Content);
+
+            return data;
+        }
+
+        var statusCode = (int) response.StatusCode;
+        if (statusCode >= 0 && statusCode <= 999)
+        {
+            var data = this.Parser.Parse<Error>(response.Content);
+
+            throw new ErrorException(data);
+        }
+
+        throw new UnknownStatusCodeException("The server returned an unknown status code: " + statusCode);
+    }
+    /**
      * Returns a paginated list of Users for the workspace. The response may contain fewer than page_size of results.
      */
-    public async Task<UserCollection> GetAll(string startCursor, int pageSize)
+    public async Task<UserCollection> GetAll(int pageSize, string startCursor)
     {
         Dictionary<string, object> pathParams = new();
 
         Dictionary<string, object> queryParams = new();
-        queryParams.Add("start_cursor", startCursor);
         queryParams.Add("page_size", pageSize);
+        queryParams.Add("start_cursor", startCursor);
 
         List<string> queryStructNames = new();
 
-        RestRequest request = new(this.Parser.Url("/v1/users", pathParams), Method.Get);
+        RestRequest request = new(this.Parser.Url("/users", pathParams), Method.Get);
         this.Parser.Query(request, queryParams, queryStructNames);
 
 
@@ -56,18 +91,17 @@ public class UserTag : TagAbstract {
         throw new UnknownStatusCodeException("The server returned an unknown status code: " + statusCode);
     }
     /**
-     * Retrieves a User using the ID specified.
+     * Retrieves the bot User associated with the API token provided in the authorization header.
      */
-    public async Task<User> Get(string userId)
+    public async Task<User> GetMe()
     {
         Dictionary<string, object> pathParams = new();
-        pathParams.Add("user_id", userId);
 
         Dictionary<string, object> queryParams = new();
 
         List<string> queryStructNames = new();
 
-        RestRequest request = new(this.Parser.Url("/v1/users/:user_id", pathParams), Method.Get);
+        RestRequest request = new(this.Parser.Url("/users/me", pathParams), Method.Get);
         this.Parser.Query(request, queryParams, queryStructNames);
 
 

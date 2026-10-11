@@ -7,6 +7,9 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
+/// <summary>
+/// Child page block.
+/// </summary>
 public class BlockChildPage : Block
 {
     [JsonPropertyName("child_page")]

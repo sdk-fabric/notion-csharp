@@ -20,18 +20,56 @@ public class PageTag : TagAbstract {
 
 
     /**
-     * Retrieves a Page object using the ID specified.
+     * Creates a new page as a child of an existing page or data source.
      */
-    public async Task<Page> Get(string pageId)
+    public async Task<Page> Create(CreatePageRequest payload, string filterProperties)
+    {
+        Dictionary<string, object> pathParams = new();
+
+        Dictionary<string, object> queryParams = new();
+        queryParams.Add("filter_properties", filterProperties);
+
+        List<string> queryStructNames = new();
+
+        RestRequest request = new(this.Parser.Url("/pages", pathParams), Method.Post);
+        this.Parser.Query(request, queryParams, queryStructNames);
+        request.AddJsonBody(JsonSerializer.Serialize(payload));
+
+        request.AddOrUpdateHeader("Content-Type", "application/json");
+
+        RestResponse response = await this.HttpClient.ExecuteAsync(request);
+
+        if (response.IsSuccessful)
+        {
+            var data = this.Parser.Parse<Page>(response.Content);
+
+            return data;
+        }
+
+        var statusCode = (int) response.StatusCode;
+        if (statusCode >= 0 && statusCode <= 999)
+        {
+            var data = this.Parser.Parse<Error>(response.Content);
+
+            throw new ErrorException(data);
+        }
+
+        throw new UnknownStatusCodeException("The server returned an unknown status code: " + statusCode);
+    }
+    /**
+     * Retrieves a Page object using the ID specified. To read page content, use Retrieve block children.
+     */
+    public async Task<Page> Get(string pageId, string filterProperties)
     {
         Dictionary<string, object> pathParams = new();
         pathParams.Add("page_id", pageId);
 
         Dictionary<string, object> queryParams = new();
+        queryParams.Add("filter_properties", filterProperties);
 
         List<string> queryStructNames = new();
 
-        RestRequest request = new(this.Parser.Url("/v1/pages/:page_id", pathParams), Method.Get);
+        RestRequest request = new(this.Parser.Url("/pages/:page_id", pathParams), Method.Get);
         this.Parser.Query(request, queryParams, queryStructNames);
 
 
@@ -55,17 +93,92 @@ public class PageTag : TagAbstract {
         throw new UnknownStatusCodeException("The server returned an unknown status code: " + statusCode);
     }
     /**
-     * Creates a new page that is a child of an existing page or database.
+     * Retrieves the content of a page rendered as enhanced markdown.
      */
-    public async Task<Page> Create(Page payload)
+    public async Task<PageMarkdown> GetMarkdown(string pageId, bool includeTranscript)
     {
         Dictionary<string, object> pathParams = new();
+        pathParams.Add("page_id", pageId);
+
+        Dictionary<string, object> queryParams = new();
+        queryParams.Add("include_transcript", includeTranscript);
+
+        List<string> queryStructNames = new();
+
+        RestRequest request = new(this.Parser.Url("/pages/:page_id/markdown", pathParams), Method.Get);
+        this.Parser.Query(request, queryParams, queryStructNames);
+
+
+        RestResponse response = await this.HttpClient.ExecuteAsync(request);
+
+        if (response.IsSuccessful)
+        {
+            var data = this.Parser.Parse<PageMarkdown>(response.Content);
+
+            return data;
+        }
+
+        var statusCode = (int) response.StatusCode;
+        if (statusCode >= 0 && statusCode <= 999)
+        {
+            var data = this.Parser.Parse<Error>(response.Content);
+
+            throw new ErrorException(data);
+        }
+
+        throw new UnknownStatusCodeException("The server returned an unknown status code: " + statusCode);
+    }
+    /**
+     * Retrieves a page property item. Paginated for title, rich_text, relation, people and rollup properties.
+     */
+    public async Task<PropertyItem> GetProperty(string pageId, string propertyId, int pageSize, string startCursor)
+    {
+        Dictionary<string, object> pathParams = new();
+        pathParams.Add("page_id", pageId);
+        pathParams.Add("property_id", propertyId);
+
+        Dictionary<string, object> queryParams = new();
+        queryParams.Add("page_size", pageSize);
+        queryParams.Add("start_cursor", startCursor);
+
+        List<string> queryStructNames = new();
+
+        RestRequest request = new(this.Parser.Url("/pages/:page_id/properties/:property_id", pathParams), Method.Get);
+        this.Parser.Query(request, queryParams, queryStructNames);
+
+
+        RestResponse response = await this.HttpClient.ExecuteAsync(request);
+
+        if (response.IsSuccessful)
+        {
+            var data = this.Parser.Parse<PropertyItem>(response.Content);
+
+            return data;
+        }
+
+        var statusCode = (int) response.StatusCode;
+        if (statusCode >= 0 && statusCode <= 999)
+        {
+            var data = this.Parser.Parse<Error>(response.Content);
+
+            throw new ErrorException(data);
+        }
+
+        throw new UnknownStatusCodeException("The server returned an unknown status code: " + statusCode);
+    }
+    /**
+     * Moves an existing page to a new parent page or data source.
+     */
+    public async Task<Page> Move(string pageId, MovePageRequest payload)
+    {
+        Dictionary<string, object> pathParams = new();
+        pathParams.Add("page_id", pageId);
 
         Dictionary<string, object> queryParams = new();
 
         List<string> queryStructNames = new();
 
-        RestRequest request = new(this.Parser.Url("/v1/pages", pathParams), Method.Post);
+        RestRequest request = new(this.Parser.Url("/pages/:page_id/move", pathParams), Method.Post);
         this.Parser.Query(request, queryParams, queryStructNames);
         request.AddJsonBody(JsonSerializer.Serialize(payload));
 
@@ -76,6 +189,81 @@ public class PageTag : TagAbstract {
         if (response.IsSuccessful)
         {
             var data = this.Parser.Parse<Page>(response.Content);
+
+            return data;
+        }
+
+        var statusCode = (int) response.StatusCode;
+        if (statusCode >= 0 && statusCode <= 999)
+        {
+            var data = this.Parser.Parse<Error>(response.Content);
+
+            throw new ErrorException(data);
+        }
+
+        throw new UnknownStatusCodeException("The server returned an unknown status code: " + statusCode);
+    }
+    /**
+     * Updates page properties, icon, cover, lock state or trash status (in_trash).
+     */
+    public async Task<Page> Update(string pageId, UpdatePageRequest payload, string filterProperties)
+    {
+        Dictionary<string, object> pathParams = new();
+        pathParams.Add("page_id", pageId);
+
+        Dictionary<string, object> queryParams = new();
+        queryParams.Add("filter_properties", filterProperties);
+
+        List<string> queryStructNames = new();
+
+        RestRequest request = new(this.Parser.Url("/pages/:page_id", pathParams), Method.Patch);
+        this.Parser.Query(request, queryParams, queryStructNames);
+        request.AddJsonBody(JsonSerializer.Serialize(payload));
+
+        request.AddOrUpdateHeader("Content-Type", "application/json");
+
+        RestResponse response = await this.HttpClient.ExecuteAsync(request);
+
+        if (response.IsSuccessful)
+        {
+            var data = this.Parser.Parse<Page>(response.Content);
+
+            return data;
+        }
+
+        var statusCode = (int) response.StatusCode;
+        if (statusCode >= 0 && statusCode <= 999)
+        {
+            var data = this.Parser.Parse<Error>(response.Content);
+
+            throw new ErrorException(data);
+        }
+
+        throw new UnknownStatusCodeException("The server returned an unknown status code: " + statusCode);
+    }
+    /**
+     * Updates or replaces content in a page using enhanced markdown.
+     */
+    public async Task<PageMarkdown> UpdateMarkdown(string pageId, UpdatePageMarkdownRequest payload)
+    {
+        Dictionary<string, object> pathParams = new();
+        pathParams.Add("page_id", pageId);
+
+        Dictionary<string, object> queryParams = new();
+
+        List<string> queryStructNames = new();
+
+        RestRequest request = new(this.Parser.Url("/pages/:page_id/markdown", pathParams), Method.Patch);
+        this.Parser.Query(request, queryParams, queryStructNames);
+        request.AddJsonBody(JsonSerializer.Serialize(payload));
+
+        request.AddOrUpdateHeader("Content-Type", "application/json");
+
+        RestResponse response = await this.HttpClient.ExecuteAsync(request);
+
+        if (response.IsSuccessful)
+        {
+            var data = this.Parser.Parse<PageMarkdown>(response.Content);
 
             return data;
         }

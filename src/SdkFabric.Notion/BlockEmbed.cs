@@ -7,7 +7,13 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
+/// <summary>
+/// Embed block.
+/// </summary>
 public class BlockEmbed : Block
 {
+    [JsonPropertyName("embed")]
+    public Embed? Embed { get; set; }
+
 }
 

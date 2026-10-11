@@ -7,16 +7,22 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
+/// <summary>
+/// Content of a paragraph block.
+/// </summary>
 public class Paragraph
 {
-    [JsonPropertyName("rich_text")]
-    public System.Collections.Generic.List<RichText>? RichText { get; set; }
+    [JsonPropertyName("children")]
+    public System.Collections.Generic.List<Block>? Children { get; set; }
 
     [JsonPropertyName("color")]
     public string? Color { get; set; }
 
-    [JsonPropertyName("children")]
-    public System.Collections.Generic.List<Block>? Children { get; set; }
+    [JsonPropertyName("icon")]
+    public Icon? Icon { get; set; }
+
+    [JsonPropertyName("rich_text")]
+    public System.Collections.Generic.List<RichText>? RichText { get; set; }
 
 }
 

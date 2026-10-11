@@ -9,14 +9,20 @@ namespace SdkFabric.Notion;
 
 public class NumberedListItem
 {
-    [JsonPropertyName("rich_text")]
-    public System.Collections.Generic.List<RichText>? RichText { get; set; }
+    [JsonPropertyName("children")]
+    public System.Collections.Generic.List<Block>? Children { get; set; }
 
     [JsonPropertyName("color")]
     public string? Color { get; set; }
 
-    [JsonPropertyName("children")]
-    public System.Collections.Generic.List<Block>? Children { get; set; }
+    [JsonPropertyName("list_format")]
+    public string? ListFormat { get; set; }
+
+    [JsonPropertyName("list_start_index")]
+    public int? ListStartIndex { get; set; }
+
+    [JsonPropertyName("rich_text")]
+    public System.Collections.Generic.List<RichText>? RichText { get; set; }
 
 }
 

@@ -7,6 +7,9 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
+/// <summary>
+/// Numbered list item block.
+/// </summary>
 public class BlockNumberedListItem : Block
 {
     [JsonPropertyName("numbered_list_item")]

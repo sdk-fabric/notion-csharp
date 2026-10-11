@@ -7,7 +7,11 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
+/// <summary>
+/// A block object represents a piece of content within Notion.
+/// </summary>
 [JsonPolymorphic(TypeDiscriminatorPropertyName = "type")]
+[JsonDerivedType(typeof(BlockAudio), typeDiscriminator: "audio")]
 [JsonDerivedType(typeof(BlockBookmark), typeDiscriminator: "bookmark")]
 [JsonDerivedType(typeof(BlockBreadcrumb), typeDiscriminator: "breadcrumb")]
 [JsonDerivedType(typeof(BlockBulletedListItem), typeDiscriminator: "bulleted_list_item")]
@@ -15,52 +19,62 @@ namespace SdkFabric.Notion;
 [JsonDerivedType(typeof(BlockChildDatabase), typeDiscriminator: "child_database")]
 [JsonDerivedType(typeof(BlockChildPage), typeDiscriminator: "child_page")]
 [JsonDerivedType(typeof(BlockCode), typeDiscriminator: "code")]
+[JsonDerivedType(typeof(BlockColumn), typeDiscriminator: "column")]
+[JsonDerivedType(typeof(BlockColumnList), typeDiscriminator: "column_list")]
 [JsonDerivedType(typeof(BlockDivider), typeDiscriminator: "divider")]
 [JsonDerivedType(typeof(BlockEmbed), typeDiscriminator: "embed")]
 [JsonDerivedType(typeof(BlockEquation), typeDiscriminator: "equation")]
 [JsonDerivedType(typeof(BlockFile), typeDiscriminator: "file")]
-[JsonDerivedType(typeof(BlockHeading), typeDiscriminator: "heading_1")]
-[JsonDerivedType(typeof(BlockHeading), typeDiscriminator: "heading_2")]
-[JsonDerivedType(typeof(BlockHeading), typeDiscriminator: "heading_3")]
+[JsonDerivedType(typeof(BlockHeadingFour), typeDiscriminator: "heading_4")]
+[JsonDerivedType(typeof(BlockHeadingOne), typeDiscriminator: "heading_1")]
+[JsonDerivedType(typeof(BlockHeadingThree), typeDiscriminator: "heading_3")]
+[JsonDerivedType(typeof(BlockHeadingTwo), typeDiscriminator: "heading_2")]
 [JsonDerivedType(typeof(BlockImage), typeDiscriminator: "image")]
+[JsonDerivedType(typeof(BlockLinkPreview), typeDiscriminator: "link_preview")]
+[JsonDerivedType(typeof(BlockLinkToPage), typeDiscriminator: "link_to_page")]
+[JsonDerivedType(typeof(BlockMeetingNotes), typeDiscriminator: "meeting_notes")]
 [JsonDerivedType(typeof(BlockNumberedListItem), typeDiscriminator: "numbered_list_item")]
-[JsonDerivedType(typeof(BlockParagraph), typeDiscriminator: "paragraph")]
 [JsonDerivedType(typeof(BlockPDF), typeDiscriminator: "pdf")]
+[JsonDerivedType(typeof(BlockParagraph), typeDiscriminator: "paragraph")]
 [JsonDerivedType(typeof(BlockQuote), typeDiscriminator: "quote")]
+[JsonDerivedType(typeof(BlockSyncedBlock), typeDiscriminator: "synced_block")]
+[JsonDerivedType(typeof(BlockTab), typeDiscriminator: "tab")]
+[JsonDerivedType(typeof(BlockTable), typeDiscriminator: "table")]
+[JsonDerivedType(typeof(BlockTableOfContents), typeDiscriminator: "table_of_contents")]
+[JsonDerivedType(typeof(BlockTableRow), typeDiscriminator: "table_row")]
+[JsonDerivedType(typeof(BlockTemplate), typeDiscriminator: "template")]
+[JsonDerivedType(typeof(BlockToDo), typeDiscriminator: "to_do")]
+[JsonDerivedType(typeof(BlockToggle), typeDiscriminator: "toggle")]
+[JsonDerivedType(typeof(BlockUnsupported), typeDiscriminator: "unsupported")]
+[JsonDerivedType(typeof(BlockVideo), typeDiscriminator: "video")]
 public abstract class Block
 {
-    [JsonPropertyName("object")]
-    public string? Object { get; set; }
-
-    [JsonPropertyName("id")]
-    public string? Id { get; set; }
-
-    [JsonPropertyName("parent")]
-    public ParentId? Parent { get; set; }
-
-    [JsonPropertyName("type")]
-    public string? Type { get; set; }
+    [JsonPropertyName("created_by")]
+    public User? CreatedBy { get; set; }
 
     [JsonPropertyName("created_time")]
     public System.DateTime? CreatedTime { get; set; }
 
-    [JsonPropertyName("created_by")]
-    public User? CreatedBy { get; set; }
+    [JsonPropertyName("has_children")]
+    public bool? HasChildren { get; set; }
 
-    [JsonPropertyName("last_edited_time")]
-    public System.DateTime? LastEditedTime { get; set; }
-
-    [JsonPropertyName("last_edited_by")]
-    public User? LastEditedBy { get; set; }
-
-    [JsonPropertyName("archived")]
-    public bool? Archived { get; set; }
+    [JsonPropertyName("id")]
+    public string? Id { get; set; }
 
     [JsonPropertyName("in_trash")]
     public bool? InTrash { get; set; }
 
-    [JsonPropertyName("has_children")]
-    public bool? HasChildren { get; set; }
+    [JsonPropertyName("last_edited_by")]
+    public User? LastEditedBy { get; set; }
+
+    [JsonPropertyName("last_edited_time")]
+    public System.DateTime? LastEditedTime { get; set; }
+
+    [JsonPropertyName("object")]
+    public string? Object { get; set; }
+
+    [JsonPropertyName("parent")]
+    public ParentId? Parent { get; set; }
 
 }
 

@@ -7,10 +7,16 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
+/// <summary>
+/// Details about a person user.
+/// </summary>
 public class Person
 {
     [JsonPropertyName("email")]
     public string? Email { get; set; }
+
+    [JsonPropertyName("email_verified")]
+    public bool? EmailVerified { get; set; }
 
 }
 

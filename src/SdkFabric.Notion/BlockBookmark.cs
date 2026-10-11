@@ -7,6 +7,9 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
+/// <summary>
+/// Bookmark block.
+/// </summary>
 public class BlockBookmark : Block
 {
     [JsonPropertyName("bookmark")]

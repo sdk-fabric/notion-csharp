@@ -7,6 +7,9 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
+/// <summary>
+/// Text content of a rich text object of type text.
+/// </summary>
 public class Text
 {
     [JsonPropertyName("content")]

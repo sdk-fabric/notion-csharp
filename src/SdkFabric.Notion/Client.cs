@@ -20,9 +20,17 @@ public class Client : ClientAbstract
     {
     }
 
-    public UserTag User()
+    public BlockTag Block()
     {
-        return new UserTag(
+        return new BlockTag(
+            this.HttpClient,
+            this.Parser
+        );
+    }
+
+    public DataSourceTag DataSource()
+    {
+        return new DataSourceTag(
             this.HttpClient,
             this.Parser
         );
@@ -44,15 +52,23 @@ public class Client : ClientAbstract
         );
     }
 
+    public UserTag User()
+    {
+        return new UserTag(
+            this.HttpClient,
+            this.Parser
+        );
+    }
+
 
 
     public static Client Build(string token)
     {
-        return new Client("https://api.notion.com", new HttpBearer(token));
+        return new Client("https://api.notion.com/v1", new HttpBearer(token));
     }
 
     public static Client BuildAnonymous()
     {
-        return new Client("https://api.notion.com", new Anonymous());
+        return new Client("https://api.notion.com/v1", new Anonymous());
     }
 }

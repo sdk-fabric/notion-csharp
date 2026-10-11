@@ -7,16 +7,19 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
+/// <summary>
+/// Content of a callout block.
+/// </summary>
 public class Callout
 {
-    [JsonPropertyName("rich_text")]
-    public System.Collections.Generic.List<RichText>? RichText { get; set; }
+    [JsonPropertyName("color")]
+    public string? Color { get; set; }
 
     [JsonPropertyName("icon")]
     public Icon? Icon { get; set; }
 
-    [JsonPropertyName("color")]
-    public string? Color { get; set; }
+    [JsonPropertyName("rich_text")]
+    public System.Collections.Generic.List<RichText>? RichText { get; set; }
 
 }
 

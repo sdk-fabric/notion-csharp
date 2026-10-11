@@ -7,6 +7,9 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
+/// <summary>
+/// Equation block.
+/// </summary>
 public class BlockEquation : Block
 {
     [JsonPropertyName("equation")]

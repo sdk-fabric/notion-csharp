@@ -7,10 +7,19 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
+/// <summary>
+/// Styling annotations of rich text.
+/// </summary>
 public class RichTextAnnotation
 {
     [JsonPropertyName("bold")]
     public bool? Bold { get; set; }
+
+    [JsonPropertyName("code")]
+    public bool? Code { get; set; }
+
+    [JsonPropertyName("color")]
+    public string? Color { get; set; }
 
     [JsonPropertyName("italic")]
     public bool? Italic { get; set; }
@@ -20,12 +29,6 @@ public class RichTextAnnotation
 
     [JsonPropertyName("underline")]
     public bool? Underline { get; set; }
-
-    [JsonPropertyName("code")]
-    public bool? Code { get; set; }
-
-    [JsonPropertyName("color")]
-    public string? Color { get; set; }
 
 }
 

@@ -7,7 +7,13 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
+/// <summary>
+/// Divider block.
+/// </summary>
 public class BlockDivider : Block
 {
+    [JsonPropertyName("divider")]
+    public EmptyObject? Divider { get; set; }
+
 }
 

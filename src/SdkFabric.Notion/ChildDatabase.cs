@@ -7,6 +7,9 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
+/// <summary>
+/// Content of a child database block.
+/// </summary>
 public class ChildDatabase
 {
     [JsonPropertyName("title")]

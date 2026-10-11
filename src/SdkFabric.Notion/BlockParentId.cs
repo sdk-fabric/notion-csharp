@@ -7,6 +7,9 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
+/// <summary>
+/// Parent is a block.
+/// </summary>
 public class BlockParentId : ParentId
 {
     [JsonPropertyName("block_id")]

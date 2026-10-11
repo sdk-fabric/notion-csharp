@@ -7,6 +7,9 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
+/// <summary>
+/// A LaTeX equation expression.
+/// </summary>
 public class Equation
 {
     [JsonPropertyName("expression")]

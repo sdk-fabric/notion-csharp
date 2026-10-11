@@ -7,7 +7,10 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
-public class BlockLinkPreview
+/// <summary>
+/// Link preview block (read-only).
+/// </summary>
+public class BlockLinkPreview : Block
 {
     [JsonPropertyName("link_preview")]
     public LinkPreview? LinkPreview { get; set; }

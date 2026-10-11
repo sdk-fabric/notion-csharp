@@ -7,25 +7,31 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
+/// <summary>
+/// A user in a Notion workspace: a member, guest or bot (integration).
+/// </summary>
 public class User
 {
-    [JsonPropertyName("object")]
-    public string? Object { get; set; }
+    [JsonPropertyName("avatar_url")]
+    public string? AvatarUrl { get; set; }
+
+    [JsonPropertyName("bot")]
+    public UserBot? Bot { get; set; }
 
     [JsonPropertyName("id")]
     public string? Id { get; set; }
 
-    [JsonPropertyName("type")]
-    public string? Type { get; set; }
+    [JsonPropertyName("name")]
+    public string? Name { get; set; }
+
+    [JsonPropertyName("object")]
+    public string? Object { get; set; }
 
     [JsonPropertyName("person")]
     public Person? Person { get; set; }
 
-    [JsonPropertyName("name")]
-    public string? Name { get; set; }
-
-    [JsonPropertyName("avatar_url")]
-    public string? AvatarUrl { get; set; }
+    [JsonPropertyName("type")]
+    public string? Type { get; set; }
 
 }
 

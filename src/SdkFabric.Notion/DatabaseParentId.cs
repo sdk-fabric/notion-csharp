@@ -7,6 +7,9 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
+/// <summary>
+/// Parent is a database.
+/// </summary>
 public class DatabaseParentId : ParentId
 {
     [JsonPropertyName("database_id")]

@@ -7,22 +7,23 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
+/// <summary>
+/// Rich text object containing styled text, mentions or inline equations.
+/// </summary>
 [JsonPolymorphic(TypeDiscriminatorPropertyName = "type")]
 [JsonDerivedType(typeof(RichTextEquation), typeDiscriminator: "equation")]
+[JsonDerivedType(typeof(RichTextMention), typeDiscriminator: "mention")]
 [JsonDerivedType(typeof(RichTextText), typeDiscriminator: "text")]
 public abstract class RichText
 {
-    [JsonPropertyName("type")]
-    public string? Type { get; set; }
-
     [JsonPropertyName("annotations")]
     public RichTextAnnotation? Annotations { get; set; }
 
-    [JsonPropertyName("plain_text")]
-    public string? PlainText { get; set; }
-
     [JsonPropertyName("href")]
     public string? Href { get; set; }
+
+    [JsonPropertyName("plain_text")]
+    public string? PlainText { get; set; }
 
 }
 

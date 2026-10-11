@@ -7,16 +7,25 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
+/// <summary>
+/// Paginated list of users.
+/// </summary>
 public class UserCollection
 {
-    [JsonPropertyName("results")]
-    public System.Collections.Generic.List<User>? Results { get; set; }
+    [JsonPropertyName("has_more")]
+    public bool? HasMore { get; set; }
 
     [JsonPropertyName("next_cursor")]
     public string? NextCursor { get; set; }
 
-    [JsonPropertyName("has_more")]
-    public bool? HasMore { get; set; }
+    [JsonPropertyName("object")]
+    public string? Object { get; set; }
+
+    [JsonPropertyName("results")]
+    public System.Collections.Generic.List<User>? Results { get; set; }
+
+    [JsonPropertyName("type")]
+    public string? Type { get; set; }
 
 }
 

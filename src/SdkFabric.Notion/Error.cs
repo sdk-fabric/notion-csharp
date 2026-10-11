@@ -7,13 +7,28 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
+/// <summary>
+/// Error response returned by the Notion API for any non-2xx status.
+/// </summary>
 public class Error
 {
+    [JsonPropertyName("additional_data")]
+    public System.Collections.Generic.Dictionary<string, object>? AdditionalData { get; set; }
+
     [JsonPropertyName("code")]
     public string? Code { get; set; }
 
     [JsonPropertyName("message")]
     public string? Message { get; set; }
+
+    [JsonPropertyName("object")]
+    public string? Object { get; set; }
+
+    [JsonPropertyName("request_id")]
+    public string? RequestId { get; set; }
+
+    [JsonPropertyName("status")]
+    public int? Status { get; set; }
 
 }
 

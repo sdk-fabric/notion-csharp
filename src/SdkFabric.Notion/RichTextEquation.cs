@@ -7,6 +7,9 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
+/// <summary>
+/// Rich text object of type equation.
+/// </summary>
 public class RichTextEquation : RichText
 {
     [JsonPropertyName("equation")]

@@ -7,13 +7,16 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
+/// <summary>
+/// A Notion-hosted file with a temporary URL.
+/// </summary>
 public class FileObject
 {
-    [JsonPropertyName("url")]
-    public string? Url { get; set; }
-
     [JsonPropertyName("expiry_time")]
     public System.DateTime? ExpiryTime { get; set; }
+
+    [JsonPropertyName("url")]
+    public string? Url { get; set; }
 
 }
 

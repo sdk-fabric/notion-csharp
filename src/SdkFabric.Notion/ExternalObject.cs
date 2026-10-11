@@ -7,6 +7,9 @@ using System.Text.Json.Serialization;
 
 namespace SdkFabric.Notion;
 
+/// <summary>
+/// An externally hosted file.
+/// </summary>
 public class ExternalObject
 {
     [JsonPropertyName("url")]
